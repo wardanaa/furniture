@@ -14,10 +14,11 @@ return new class extends Migration
         Schema::create('helps', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('pertanyaan');
-            $table->string('jawaban');
-            $table->integer('admin_id'); 
-            $table->integer('pengguna_id'); 
+            $table->text('question');
+            $table->text('answer');
+            $table->unsignedBigInteger('admin_id')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

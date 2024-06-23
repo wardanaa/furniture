@@ -15,10 +15,12 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name');
+            $table->text('tags');
             $table->string('description');
-            $table->string('foto');
+            $table->string('photo');
             $table->decimal('price');
-            $table->integer('supplier_id')->unsigned(); 
+            $table->unsignedBigInteger('supplier_id');
+            $table->foreign('supplier_id')->references('id')->on('users');
         });
     }
 

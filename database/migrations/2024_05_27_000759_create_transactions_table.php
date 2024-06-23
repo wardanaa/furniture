@@ -15,8 +15,12 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->integer('quantity'); 
-            $table->integer('owner_id'); 
-            $table->integer('pelanggan_id'); 
+            $table->unsignedBigInteger('product_id')->nullable();
+            $table->foreign('product_id')->references('id')->on('products');
+            $table->unsignedBigInteger('supplier_id')->nullable();
+            $table->foreign('supplier_id')->references('id')->on('users');
+            $table->unsignedBigInteger('customer_id')->nullable();
+            $table->foreign('customer_id')->references('id')->on('users');
             $table->integer('status'); 
         });
     }

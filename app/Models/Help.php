@@ -9,5 +9,5 @@ class Help extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['pertanyaan','jawaban'];
+    protected $fillable = ['question','answer','admin_id','user_id'];
 }

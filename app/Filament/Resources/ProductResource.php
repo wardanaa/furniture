@@ -13,6 +13,8 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Hidden;
+use Illuminate\Support\Facades\Auth;
 
 class ProductResource extends Resource
 {
@@ -26,12 +28,22 @@ class ProductResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('name')
                     ->label('Name')
-                    ->required()
-                    ->maxLength(255),
+                    ->required(),
+                Forms\Components\TextInput::make('price')
+                    ->label('Price')
+                    ->numeric()
+                    ->required(),
+                Forms\Components\TextInput::make('tags')
+                    ->label('Tags')
+                    ->hint('separate tags by comma')
+                    ->required(),
                 Forms\Components\Textarea::make('description')
                     ->label('Description')
                     ->required(),
-                FileUpload::make('foto')
+                FileUpload::make('photo')
+                    ->required(),
+                Hidden::make('supplier_id')
+                    ->default(Auth::id())
             ]);
     }
 
@@ -40,6 +52,8 @@ class ProductResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')->sortable()->searchable(),
+                Tables\Columns\TextColumn::make('price')->sortable()->searchable(),
+                Tables\Columns\TextColumn::make('tags')->searchable(),
                 Tables\Columns\TextColumn::make('description'),
             ])
             ->filters([

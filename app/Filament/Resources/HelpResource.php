@@ -12,6 +12,8 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\Hidden;
+use Illuminate\Support\Facades\Auth;
 
 class HelpResource extends Resource
 {
@@ -23,11 +25,14 @@ class HelpResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Textarea::make('pertanyaan')
+                Forms\Components\Textarea::make('question')
+                    ->label('Question')
                     ->required(),
-                Forms\Components\Textarea::make('jawaban')
-                    ->label('Jawaban')
+                Forms\Components\Textarea::make('answer')
+                    ->label('Answer')
                     ->required(),
+                Hidden::make('user_id')
+                    ->default(Auth::id())
             ]);
     }
 
@@ -35,8 +40,8 @@ class HelpResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('description'),
-                Tables\Columns\TextColumn::make('jawaban'),
+                Tables\Columns\TextColumn::make('question'),
+                Tables\Columns\TextColumn::make('answer'),
             ])
             ->filters([
                 //
