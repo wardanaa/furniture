@@ -18,7 +18,8 @@ return new class extends Migration
             $table->text('tags');
             $table->string('description');
             $table->string('photo');
-            $table->decimal('price');
+            $table->double('price');
+            $table->decimal('discount');
             $table->unsignedBigInteger('supplier_id');
             $table->foreign('supplier_id')->references('id')->on('users');
         });
