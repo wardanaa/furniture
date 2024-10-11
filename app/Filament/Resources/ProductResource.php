@@ -33,6 +33,10 @@ class ProductResource extends Resource
                     ->label('Price')
                     ->numeric()
                     ->required(),
+                Forms\Components\TextInput::make('discount')
+                    ->label('Discount')
+                    ->numeric()
+                    ->required(),
                 Forms\Components\TextInput::make('tags')
                     ->label('Tags')
                     ->hint('separate tags by comma')
@@ -53,6 +57,7 @@ class ProductResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('price')->sortable()->searchable(),
+                Tables\Columns\TextColumn::make('discount')->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('tags')->searchable(),
                 Tables\Columns\TextColumn::make('description'),
             ])
