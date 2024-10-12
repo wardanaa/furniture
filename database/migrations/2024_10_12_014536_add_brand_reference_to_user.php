@@ -12,10 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('full_name')->nullable();
-            $table->string('phone_number')->nullable();
-            $table->boolean('validity')->default(false);
-            $table->string('avatar')->nullable();
+            $table->unsignedBigInteger('brand_id')->nullable();
+            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('set null');
         });
     }
 
@@ -25,10 +23,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('full_name');
-            $table->dropColumn('phone_number');
-            $table->dropColumn('validity');
-            $table->dropColumn('avatar');
+            $table->dropForeign(['brand_id']);
+            $table->dropColumn('brand_id');
         });
     }
 };

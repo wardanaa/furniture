@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('helps', function (Blueprint $table) {
+        Schema::create('colors', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('hex');
             $table->timestamps();
-            $table->text('question');
-            $table->text('answer');
-            $table->unsignedBigInteger('admin_id')->nullable();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('helps');
+        Schema::dropIfExists('color');
     }
 };
