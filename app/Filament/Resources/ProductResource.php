@@ -94,7 +94,7 @@ class ProductResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('price')->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('discount')->sortable()->searchable(),
-                Tables\Columns\TextColumn::make('discount_type')->searchable(),
+                Tables\Columns\TextColumn::make('discount_type')->sortable()->searchable(),
             ])
             ->filters([
                 //
