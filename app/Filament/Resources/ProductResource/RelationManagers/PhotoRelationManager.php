@@ -6,6 +6,7 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Table;
 use Guava\FilamentNestedResources\Concerns\NestedRelationManager;
 use Illuminate\Database\Eloquent\Builder;
@@ -32,6 +33,7 @@ class PhotoRelationManager extends RelationManager
             ->recordTitleAttribute('photos')
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
+                ImageColumn::make('directory')
             ])
             ->filters([
                 //

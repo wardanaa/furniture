@@ -2,22 +2,24 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\CategoryResource\Pages;
-use App\Filament\Resources\CategoryResource\RelationManagers;
-use App\Models\Category;
+use App\Filament\Resources\BrandResource\Pages;
+use App\Filament\Resources\BrandResource\RelationManagers;
+use App\Models\Brand;
 use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class CategoryResource extends Resource
+class BrandResource extends Resource
 {
-    protected static ?string $model = Category::class;
+    protected static ?string $model = Brand::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-tag';
+    protected static ?string $navigationIcon = 'heroicon-o-building-storefront';
 
     protected static ?string $navigationGroup = 'Product Management';
 
@@ -26,8 +28,10 @@ class CategoryResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
-                    ->label('Name')
-                    ->required(),
+                    ->required()
+                    ->maxLength(255),
+                FileUpload::make('logo')
+                    ->image()
             ]);
     }
 
@@ -35,14 +39,14 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')->sortable()->searchable(),
+                Tables\Columns\TextColumn::make('name'),
+                ImageColumn::make('logo')
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -61,9 +65,9 @@ class CategoryResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListCategories::route('/'),
-            'create' => Pages\CreateCategory::route('/create'),
-            'edit' => Pages\EditCategory::route('/{record}/edit'),
+            'index' => Pages\ListBrands::route('/'),
+            'create' => Pages\CreateBrand::route('/create'),
+            'edit' => Pages\EditBrand::route('/{record}/edit'),
         ];
     }
 }

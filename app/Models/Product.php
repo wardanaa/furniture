@@ -21,10 +21,16 @@ class Product extends Model
         'discount',
         'discount_type',
         'description',
+        'brand_id'
     ];
 
     public function photos(): HasMany
     {
         return $this->hasMany(Photo::class);
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
     }
 }

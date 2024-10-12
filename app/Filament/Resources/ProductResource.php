@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ProductResource\Pages;
 use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Filament\Resources\ProductResource\RelationManagers\PhotoRelationManager;
+use App\Models\Brand;
 use App\Models\Product;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -41,6 +42,11 @@ class ProductResource extends Resource
                 Forms\Components\TextInput::make('name')
                     ->label('Name')
                     ->required(),
+                Select::make('brand_id')
+                    ->label('Brand')
+                    ->options(Brand::all()->pluck('name', 'id'))
+                    ->searchable()
+                    ->required(),
                 Forms\Components\TextInput::make('stock')
                     ->numeric()
                     ->label('Stock')
@@ -48,14 +54,17 @@ class ProductResource extends Resource
                 Select::make('category_id')
                     ->label('Category')
                     ->options(Category::all()->pluck('name', 'id'))
-                    ->searchable(),
+                    ->searchable()
+                    ->required(),
                 Select::make('dimension')
                     ->label('Dimension')
-                    ->options(DimensionEnum::class),
+                    ->options(DimensionEnum::class)
+                    ->required(),
                 Select::make('color_id')
                     ->label('Color')
                     ->options(Color::all()->pluck('name', 'id'))
-                    ->searchable(),
+                    ->searchable()
+                    ->required(),
                 Forms\Components\TextInput::make('price')
                     ->label('Price')
                     ->numeric()
@@ -66,7 +75,8 @@ class ProductResource extends Resource
                     ->required(),
                 Select::make('discount_type')
                     ->label('Discount Type')
-                    ->options(DiscountTypeEnum::class),
+                    ->options(DiscountTypeEnum::class)
+                    ->required(),
                 Forms\Components\Textarea::make('description')
                     ->label('Description')
                     ->required()
@@ -78,10 +88,13 @@ class ProductResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')->sortable()->searchable(),
+                Tables\Columns\TextColumn::make('brand.name') // Change here
+                    ->label('Brand') // Optionally set a label
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('price')->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('discount')->sortable()->searchable(),
-                Tables\Columns\TextColumn::make('tags')->searchable(),
-                Tables\Columns\TextColumn::make('description'),
+                Tables\Columns\TextColumn::make('discount_type')->searchable(),
             ])
             ->filters([
                 //

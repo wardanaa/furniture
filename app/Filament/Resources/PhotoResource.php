@@ -10,6 +10,7 @@ use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Table;
 use Guava\FilamentNestedResources\Ancestor;
 use Guava\FilamentNestedResources\Concerns\NestedResource;
@@ -39,7 +40,8 @@ class PhotoResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('name'),
+                ImageColumn::make('directory')
             ])
             ->filters([
                 //
