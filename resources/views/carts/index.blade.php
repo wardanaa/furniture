@@ -67,7 +67,14 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                    $total = 0;
+                                @endphp
                                 @foreach ($cartItems as $item)
+                                    @php
+                                        $total = $item->product()->price_after_discount() * $item->amount;
+                                    @endphp
+
                                     <tr>
                                         <td class="py-4 border-b border-gray-200 flex items-center gap-6 h-40 pr-24">
                                             <img class="rounded-2xl object-cover" style="height:130px;"
@@ -144,7 +151,7 @@
                     <div class="flex justify-between flex-wrap mb-4">
                         <p class="text-xl font-semibold">Grand Total</p>
                         <p class="font-semibold text-lg">
-                            Rp{{ number_format($cart == null ? 0 : $cart->total_price(), 0, ',', '.') }},00</p>
+                            Rp{{ number_format($cart == null ? 0 : $total, 0, ',', '.') }},00</p>
                     </div>
                     @if ($cart != null)
                         <a href="{{ route('checkouts') }}"

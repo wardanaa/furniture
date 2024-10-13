@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CartsController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,6 @@ Route::get('/payment', function () {
     return view('payment');
 })->name('payment');
 
-Route::get('/order-history', function () {
-    return view('order-history');
-})->name('order-history');
+Route::get('/orders', [OrdersController::class, 'index'])->name('orders');
+Route::post('/order/{id}/success', [OrdersController::class, 'markAsSuccess'])->name('order.success');
+Route::get('/order/{id}/email', [OrdersController::class, 'sendEmail'])->name('order.email');

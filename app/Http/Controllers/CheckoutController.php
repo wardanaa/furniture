@@ -78,8 +78,8 @@ class CheckoutController extends Controller
             // Mailto URL format
             $mailtoUrl = "mailto:$emailTo?subject=" . str_replace('+', '%20', urlencode($subject)) . "&body=" . str_replace('+', '%20', urlencode($body));
 
-            // Update session data if necessary
-            session()->put('cart', $cart);
+            // Delete session
+            session()->forget('cart');
 
             // Redirect to default email client with pre-filled subject and body
             return redirect($mailtoUrl);

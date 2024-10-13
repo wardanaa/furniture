@@ -1,3 +1,9 @@
+@if (session('success'))
+    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mt-4" role="alert">
+        <strong class="font-bold">Success!</strong>
+        <span class="block sm:inline">{{ session('success') }}</span>
+    </div>
+@endif
 <section x-data="{ mobileNavOpen: false }">
     <nav class="relative bg-white py-3 shadow-lg">
         <div class="container mx-auto px-4">
@@ -43,7 +49,7 @@
                                 fill="black"></path>
                         </svg>
                     </a>
-                    <a href="{{ route('order-history') }}"
+                    <a href="{{ route('orders') }}"
                         class="rounded-full bg-gray-900 p-3 flex items-center justify-between h-12 hover:bg-gray-800 focus:ring-4 focus:ring-gray-200 transition duration-200">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24"
                             fill="none">
@@ -114,7 +120,7 @@
                                 fill="black"></path>
                         </svg>
                     </a>
-                    <a href="{{ route('order-history') }}"
+                    <a href="{{ route('orders') }}"
                         class="rounded-full bg-gray-900 p-3 flex items-center justify-between h-12 hover:bg-gray-800 focus:ring-4 focus:ring-gray-200 transition duration-200">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24"
                             fill="none">

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class Cart extends Model
 {
@@ -23,7 +24,11 @@ class Cart extends Model
         foreach ($this->cartItems as $item) {
             $product = $item->product();
             if ($product) {
-                $total += $product->price_after_discount() * $item->amount;
+                $price = $product->price_after_discount();
+                $amount = $item->amount;
+                $subtotal = $price * $amount;
+
+                $total += $subtotal;
             }
         }
 
