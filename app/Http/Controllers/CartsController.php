@@ -37,7 +37,8 @@ class CartsController extends Controller
                 ['user_id' => $user->id],
                 [
                     'cart_code' => 'CART-' . strtoupper(uniqid()),
-                    'phone' => '+62',
+                    'name' => $user->name,
+                    'phone' => $user->phone,
                     'country_code' => 'ID', // Default or dynamic country code
                     'city' => 'Jakarta', // Example city, you can adjust this
                     'zip_code' => '12345', // Example zip code

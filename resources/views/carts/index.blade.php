@@ -143,12 +143,15 @@
                     <h3 class="font-heading uppercase mb-6 text-3xl">Order Summary</h3>
                     <div class="flex justify-between flex-wrap mb-4">
                         <p class="text-xl font-semibold">Grand Total</p>
-                        <p class="font-semibold text-lg">Rp{{ number_format($cart->total_price(), 0, ',', '.') }},00</p>
+                        <p class="font-semibold text-lg">
+                            Rp{{ number_format($cart == null ? 0 : $cart->total_price(), 0, ',', '.') }},00</p>
                     </div>
-                    <a href="{{ route('checkouts') }}"
-                        class="bg-gray-900 rounded-full w-full hover:bg-gray-800 focus:ring-4 focus:ring-gray-200 h-12 px-4 py-3 text-sm font-semibold text-white inline-flex items-center justify-center transition duration-200">
-                        Checkout
-                    </a>
+                    @if ($cart != null)
+                        <a href="{{ route('checkouts') }}"
+                            class="bg-gray-900 rounded-full w-full hover:bg-gray-800 focus:ring-4 focus:ring-gray-200 h-12 px-4 py-3 text-sm font-semibold text-white inline-flex items-center justify-center transition duration-200">
+                            Checkout
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>

@@ -86,7 +86,7 @@
                                 <div class="mb-6">
                                     <label for="input-05-1" class="mb-1.5 inline-block text-sm font-semibold">Phone
                                         number</label>
-                                    <input id="input-05-1" name="phone-number" type="text" value="{{ $cart->phone }}"
+                                    <input id="input-05-1" name="phone" type="text" value="{{ $cart->phone }}"
                                         class="py-3 px-4 w-full text-sm placeholder-gray-500 outline-none border border-gray-100 focus:border-gray-300 focus:ring focus:ring-gray-100 rounded-md transition duration-200"
                                         placeholder="Enter your phone">
                                 </div>
