@@ -33,4 +33,18 @@ class Product extends Model
     {
         return $this->belongsTo(Brand::class);
     }
+
+    public function price_after_discount()
+    {
+        $discount_amount = $this->discount_amount;
+        if ($this->discount_type == "percentage") {
+            $discount_amount = $this->price * ($this->$discount_amount || 1) / 100;
+        }
+        return $this->price - $discount_amount;
+    }
+
+    public function color()
+    {
+        return Color::find($this->color_id)->first();
+    }
 }

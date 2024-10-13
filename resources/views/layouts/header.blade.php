@@ -12,7 +12,7 @@
                                 class="text-black text-sm font-medium hover:text-opacity-80 transition duration-200">Home</a>
                         </li>
                         <li>
-                            <a href="{{ route('product-list') }}"
+                            <a href="{{ route('products') }}"
                                 class="text-black text-sm font-medium hover:text-opacity-80 transition duration-200">Product</a>
                         </li>
                     </ul>
@@ -34,7 +34,7 @@
                         </a>
                         <input type="text" class="flex-1 outline-none" placeholder="Search Product">
                     </div>
-                    <a href="{{ route('cart') }}"
+                    <a href="{{ route('carts') }}"
                         class="rounded-full bg-white border border-gray-200 p-3 flex items-center justify-between h-12 hover:bg-gray-50 focus:ring-4 focus:ring-gray-200 transition duration-200">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24"
                             fill="none">
@@ -85,7 +85,7 @@
                     <a href="{{ route('home') }}" class="text-sm font-medium">Home</a>
                 </li>
                 <li>
-                    <a href="{{ route('product-list') }}" class="text-sm font-medium">Product</a>
+                    <a href="{{ route('products') }}" class="text-sm font-medium">Product</a>
                 </li>
             </ul>
             <div class="flex flex-col gap-10">
@@ -105,7 +105,7 @@
                     <input type="text" class="flex-1 outline-none" placeholder="Search Product">
                 </div>
                 <div class="flex gap-4 flex-wrap">
-                    <a href="{{ route('cart') }}"
+                    <a href="{{ route('carts') }}"
                         class="rounded-full bg-white border border-gray-200 p-3 flex items-center justify-between h-12 hover:bg-gray-50 focus:ring-4 focus:ring-gray-200 transition duration-200">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24"
                             fill="none">
