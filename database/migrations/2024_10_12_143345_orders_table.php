@@ -13,8 +13,8 @@ return new class extends Migration {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('status');
-            $table->string('shipping_code');
-            $table->string('shipping_companny');
+            $table->string('shipping_code')->nullable(true);
+            $table->string('shipping_companny')->nullable(true);
             $table->double('total_payment');
             $table->foreignId('cart_id')->constrained()->onDelete('cascade');
             $table->timestamps();

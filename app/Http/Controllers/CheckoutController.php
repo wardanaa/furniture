@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CartItem;
+use App\Models\Order;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -38,6 +39,20 @@ class CheckoutController extends Controller
 
             // Save the updated cart
             $cart->save();
+
+            // Check if an order exists for this cart
+            $order = Order::where('cart_id', $cart->id)->first();
+
+            // If no order exists, create a new one
+            if (!$order) {
+                $order = Order::create([
+                    'status' => 'request', // Set default status to 'request'
+                    'shipping_code' => null, // Add your default values or null
+                    'shipping_companny' => null,
+                    'total_payment' => $cart->total_price(),
+                    'cart_id' => $cart->id
+                ]);
+            }
 
             $subject = "Checkout Cart Details - Cart Code: {$cart->cart_code}";
             $body = "Cart Code: {$cart->cart_code}\n";

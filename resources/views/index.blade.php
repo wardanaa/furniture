@@ -25,7 +25,7 @@
                                 Style</p>
                         </div>
                         <div class="w-full">
-                            <a href="#"
+                            <a href="{{ route('products') }}"
                                 class="bg-green-900 rounded-full hover:bg-green-800 focus:ring-4 focus:ring-gray-200 text-sm text-white font-semibold px-8 h-12 inline-flex items-center transition duration-200">Explore
                                 Our Collection</a>
                         </div>
