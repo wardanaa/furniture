@@ -80,9 +80,11 @@
                                                 product</a>
                                         </div>
                                         <div class="p-2">
-                                            <a href="{{ route('order.email', $item->id) }}"
-                                                class="bg-gray-50 rounded-full hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 text-gray-900 text-sm font-semibold px-4 h-9 inline-flex items-center transition duration-200">Send
-                                                Email</a>
+                                            @if ($item->status != 'success')
+                                                <a href="{{ route('order.email', $item->id) }}"
+                                                    class="bg-gray-50 rounded-full hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 text-gray-900 text-sm font-semibold px-4 h-9 inline-flex items-center transition duration-200">Send
+                                                    Email</a>
+                                            @endif
                                         </div>
                                         <div class="p-2">
                                             @if ($item->status != 'success')
