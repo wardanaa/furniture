@@ -4,6 +4,7 @@ use App\Http\Controllers\CartsController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\ProductsController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,3 +40,18 @@ Route::get('/payment', function () {
 Route::get('/orders', [OrdersController::class, 'index'])->name('orders');
 Route::post('/order/{id}/success', [OrdersController::class, 'markAsSuccess'])->name('order.success');
 Route::get('/order/{id}/email', [OrdersController::class, 'sendEmail'])->name('order.email');
+
+Route::get('/clear-cache', static function () {
+    Artisan::call('cache:clear');
+    return redirect()->back();
+})->name('clear-cache');
+
+Route::get('/migrate-db', static function () {
+    Artisan::call('migrate');
+    return redirect()->back();
+})->name('migrate-db');
+
+Route::get('/seed-db', static function () {
+    Artisan::call('db:seed');
+    return redirect()->back();
+})->name('seed-db');
