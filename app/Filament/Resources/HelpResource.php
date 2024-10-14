@@ -19,7 +19,7 @@ class HelpResource extends Resource
 {
     protected static ?string $model = Help::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-question-mark-circle';
 
     public static function form(Form $form): Form
     {
@@ -40,14 +40,15 @@ class HelpResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('question'),
-                Tables\Columns\TextColumn::make('answer'),
+                Tables\Columns\TextColumn::make('question')->sortable()->searchable(),
+                Tables\Columns\TextColumn::make('answer')->sortable()->searchable(),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
