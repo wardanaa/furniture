@@ -36,7 +36,7 @@ class CartsController extends Controller
             $cart = Cart::firstOrCreate(
                 ['user_id' => $user->id],
                 [
-                    'cart_code' => 'CART-' . strtoupper(uniqid('', true)),
+                    'cart_code' => 'CART-' . strtoupper(uniqid()),
                     'name' => $user->name,
                     'phone' => $user->phone,
                     'country_code' => 'ID', // Default or dynamic country code
